@@ -1,1 +1,130 @@
-/* You can add global styles to this file, and also import other style files */
+/* =========================================
+   1. GLOBAL VARIABLES & THEME
+   ========================================= */
+@import 'primeicons/primeicons.css';
+
+:root {
+  /* Brand Colors (Extracted from PDF) */
+  --primary-color: #0f172a; /* Deep Navy/Black */
+  --accent-cyan: #29b6f6; /* Bright Cyan from Logo/PDF */
+  --text-grey: #475569; /* Professional Slate Grey */
+  --bg-white: #ffffff;
+  --bg-light: #f8fafc;
+
+  /* Typography */
+  --font-family: 'Inter', sans-serif;
+  --heading-height: 1.2;
+
+  /* Layout Spacing */
+  --section-padding: 6rem 8%; /* Consistent spacing */
+  --max-width: 1380px; /* Prevent stretching on huge screens */
+}
+
+/* =========================================
+   2. GLOBAL RESET & TYPOGRAPHY
+   ========================================= */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-family);
+  background-color: var(--bg-white);
+  color: var(--primary-color);
+  -webkit-font-smoothing: antialiased; /* Sharp text on Mac */
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 1.5rem 0;
+  line-height: var(--heading-height);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* SEO Friendly Section Titles */
+.section-title {
+  font-size: 3rem;
+  position: relative;
+  display: inline-block;
+
+  /* Underscore accent */
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent-cyan);
+    margin-top: 1rem;
+    transition: width 0.8s ease;
+  }
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-grey);
+  margin-bottom: 1.5rem;
+  text-align: justify; /* Professional document look */
+}
+
+/* =========================================
+   3. SCROLL ANIMATION ENGINE
+   ========================================= */
+
+/* A. Fade Up (Text & Groups) */
+.scroll-fade {
+  opacity: 1; /* Fallback: Visible if JS fails */
+}
+
+.scroll-fade.fade-init {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-fade.fade-init.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-fade.fade-init.active .section-title::after {
+  width: 100%; /* Expands the underline when visible */
+}
+
+/* B. Image Mask Reveal (Premium Feel) */
+.reveal-mask {
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.reveal-mask::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bg-white);
+  z-index: 2;
+  transform: translateY(0%);
+  transition: transform 1.2s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.reveal-mask.active::after {
+  transform: translateY(105%); /* Slides mask away */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 4rem 5%;
+  }
+  .section-title {
+    font-size: 2.2rem;
+  }
+}

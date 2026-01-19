@@ -1,13 +1,87 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <title>AbiWebsite</title>
+  <title>Astra Build International | Global Construction Excellence</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <meta name="description"
+    content="Astra Build International delivers integrated, sustainable, and future-ready construction solutions with global standards.">
+  <meta name="keywords" content="Construction, Engineering, Sustainable Building, Global Infrastructure, Astra Build">
+  <meta name="author" content="Astra Build International">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0056b3">
+  <meta property="og:title" content="Astra Build International | Global Construction Excellence">
+  <meta property="og:description"
+    content="Delivering integrated, sustainable, and future-ready construction solutions.">
+  <meta property="og:image" content="assets/social-share-image.jpg">
+  <meta property="og:url" content="https://astrabuild.com">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/jpeg" href="logo.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .app-loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+      flex-direction: column;
+    }
+
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid #DDD;
+      border-bottom-color: #0056b3;
+      /* Brand Color */
+      border-radius: 50%;
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-text {
+      margin-top: 15px;
+      color: #555;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+  </style>
 </head>
+
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="app-loading">
+      <div class="loader"></div>
+      <div class="loading-text">Loading Astra Build...</div>
+    </div>
+  </app-root>
+
+  <noscript>Please enable JavaScript to view the full Astra Build International experience.</noscript>
 </body>
+
 </html>
