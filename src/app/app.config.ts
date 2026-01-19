@@ -7,6 +7,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +21,6 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: '.my-app-dark', // Astra PDF uses a light theme [cite: 1, 4]
         },
       },
-    }),
+    }), provideClientHydration(withEventReplay()),
   ],
 };
