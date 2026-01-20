@@ -1,30 +1,31 @@
-/* Local variables mapped to Global Root (styles.scss) */
+/* =========================================================
+   HEADER / NAVBAR
+   - Desktop: premium glass + 3D logo + links
+   - <= 992px: compact header + hamburger + drawer + CTA
+   ========================================================= */
+
+/* Base */
 .navbar {
   background: rgba(255, 255, 255, 0.95);
-  padding: 1rem 4rem; /* Desktop Padding */
+  padding: 1rem 4rem; /* Desktop padding */
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   position: sticky;
   top: 0;
   z-index: 1000;
 
-  /* Glassmorphism Effect */
   backdrop-filter: blur(12px) saturate(1.1);
   box-shadow: 0 4px 20px rgba(13, 44, 77, 0.04);
-
-  /* Mobile Padding override */
-  @media (max-width: 992px) {
-    padding: 1rem 1.5rem;
-  }
 
   .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: var(--max-width); /* Uses global max-width */
+    max-width: var(--max-width);
     margin: 0 auto;
+    gap: 24px;
   }
 
-  /* --- LOGO STYLING (3D Effect) --- */
+  /* ---------- LOGO (Icon + Brand pill) ---------- */
   .logo {
     display: flex;
     align-items: center;
@@ -32,11 +33,11 @@
     text-decoration: none;
     perspective: 900px;
     cursor: pointer;
+    min-width: 0; /* allows shrink on mobile */
 
-    /* The Icon Box */
     .logo-mark {
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       border-radius: 12px;
       overflow: hidden;
       position: relative;
@@ -49,33 +50,38 @@
       transition:
         transform 0.3s ease,
         box-shadow 0.3s ease;
+      flex: 0 0 auto;
 
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;
       }
     }
 
-    /* The Text Plate */
     .brand-text {
       display: flex;
       align-items: center;
-      padding: 10px 18px;
+      padding: 12px 22px;
       border-radius: 10px;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
       border: 1px solid rgba(13, 44, 77, 0.08);
       box-shadow: 0 4px 12px rgba(13, 44, 77, 0.06);
       transition: all 0.3s ease;
 
+      /* key for mobile: prevent pill from hijacking width */
+      min-width: 0;
+      overflow: hidden;
+      flex: 0 1 auto;
+
       .brand-img {
-        height: 32px; /* Adjustable height for brand name image */
+        height: 49px;
         width: auto;
         display: block;
       }
     }
 
-    /* Hover Interactions */
     &:hover {
       .logo-mark {
         transform: translateY(-2px) rotateX(5deg);
@@ -87,31 +93,13 @@
         box-shadow: 0 8px 20px rgba(77, 195, 224, 0.15);
       }
     }
-
-    /* Mobile Logo Adjustments */
-    @media (max-width: 576px) {
-      gap: 10px;
-      .logo-mark {
-        width: 42px;
-        height: 42px;
-      }
-      .brand-text {
-        padding: 8px 12px;
-        .brand-img {
-          height: 24px;
-        }
-      }
-    }
   }
 
-  /* --- DESKTOP LINKS --- */
+  /* ---------- DESKTOP LINKS ---------- */
   .desktop-only {
     display: flex;
     gap: 2.5rem;
-
-    @media (max-width: 992px) {
-      display: none;
-    }
+    margin-left: auto;
 
     a {
       text-decoration: none;
@@ -123,13 +111,11 @@
       transition: color 0.2s ease;
       position: relative;
 
-      /* Hover & Active State */
       &:hover,
       &.active {
         color: var(--accent-cyan);
       }
 
-      /* Subtle Underline Animation */
       &::after {
         content: '';
         position: absolute;
@@ -148,61 +134,182 @@
     }
   }
 
-  /* --- HAMBURGER BUTTON --- */
+  /* ---------- HAMBURGER ---------- */
   .hamburger-btn {
-    display: none;
+    display: none; /* desktop hidden */
     background: none;
     border: none;
-    font-size: 1.8rem;
     color: var(--primary-color);
     cursor: pointer;
     padding: 0;
-
-    @media (max-width: 992px) {
-      display: block;
-    }
+    line-height: 1;
+    flex: 0 0 auto;
+    font-size: 1.8rem;
   }
+}
 
-  /* --- MOBILE DROPDOWN --- */
-  .mobile-menu {
-    display: none; /* Hidden by default */
-    flex-direction: column;
-    background: var(--bg-white);
-    border-top: 1px solid #eee;
-    margin-top: 1rem;
-    overflow: hidden;
+/* =========================================================
+   MOBILE/TABLET (<= 992px)
+   - compact header
+   - hide desktop links
+   - show hamburger
+   - shrink brand pill + icon
+   ========================================================= */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 0.75rem 1rem;
 
-    &.open {
-      display: flex;
-      animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    .nav-container {
+      gap: 12px;
     }
 
-    a {
-      text-decoration: none;
-      color: var(--primary-color);
-      padding: 1.2rem;
-      text-align: center;
-      font-weight: 600;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .desktop-only {
+      display: none;
+    }
 
-      &:hover,
-      &.active {
-        background-color: #f8fafc;
-        color: var(--accent-cyan);
+    .hamburger-btn {
+      display: block;
+      font-size: 1.6rem;
+    }
+
+    .logo {
+      gap: 10px;
+
+      .logo-mark {
+        width: 45px;
+        height: 45px;
+        border-radius: 10px;
+      }
+
+      .brand-text {
+        padding: 6px 10px;
+        border-radius: 10px;
+
+        /* THIS is what stops the squeeze */
+        max-width: 240px;
+
+        .brand-img {
+          height: 32px;
+        }
       }
     }
   }
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
+/* Small phones */
+@media (max-width: 576px) {
+  .navbar {
+    .logo {
+      .logo-mark {
+        width: 38px;
+        height: 38px;
+      }
+
+      .brand-text {
+        max-width: 150px;
+
+        .brand-img {
+          height: 20px;
+        }
+      }
+    }
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+}
+
+/* Tiny phones: optional – hide brand pill */
+@media (max-width: 420px) {
+  .navbar {
+    .logo {
+      .brand-text {
+        display: none;
+      }
+    }
+  }
+}
+
+/* =========================================================
+   DRAWER + BACKDROP + CTA (mobile/tablet only)
+   ========================================================= */
+.drawer-backdrop,
+.mobile-drawer,
+.mobile-cta {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .drawer-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1050;
+  }
+
+  .mobile-drawer {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(78vw, 340px);
+    height: 100vh;
+    background: #fff;
+    z-index: 1100;
+    transform: translateX(100%);
+    transition: transform 220ms ease;
+    padding: 84px 18px 18px;
+    box-shadow: -18px 0 40px rgba(0, 0, 0, 0.12);
+
+    a {
+      display: block;
+      padding: 14px 10px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+      &:hover,
+      &.active {
+        background: #f8fafc;
+        color: var(--accent-cyan);
+      }
+    }
+  }
+
+  .mobile-drawer.open {
+    transform: translateX(0);
+  }
+
+  .mobile-cta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.95);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(8px);
+  }
+
+  .cta-btn {
+    text-align: center;
+    padding: 14px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    color: var(--primary-color);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    background: #fff;
+  }
+
+  .cta-btn.whatsapp {
+    background: #25d366;
+    border-color: #25d366;
+    color: #fff;
   }
 }

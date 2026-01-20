@@ -176,3 +176,82 @@
     transform: translateY(calc(-50% - 10px));
   }
 }
+/* Mobile/Tablet Contact Cleanup */
+@media (max-width: 992px) {
+  /* 1) Remove website row on mobile/tablet */
+  .contact-item--website {
+    display: none;
+  }
+
+  /* 2) Reduce image dominance */
+  .contact-section .image-block {
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 16 / 10; // shorter than 4/3 on mobile
+  }
+
+  .contact-section .image-block .cyan-square-left {
+    left: -18px;
+    width: 70px;
+    height: 70px;
+  }
+
+  /* 3) Better list alignment */
+  .contact-section .info-block .contact-list {
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .contact-section .info-block .contact-list .contact-item {
+    justify-content: flex-start; // stop centering the whole row
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  /* 4) Touch devices: remove hover translate */
+  .contact-section .info-block .contact-list .contact-item:hover {
+    transform: none;
+  }
+
+  /* 5) Slightly smaller icons */
+  .contact-section .info-block .contact-list .contact-item .icon-circle {
+    width: 44px;
+    height: 44px;
+
+    i {
+      font-size: 1.05rem;
+    }
+  }
+
+  /* 6) Make the address easier to read */
+  .contact-section .info-block .contact-list .contact-item .text-group .value {
+    font-size: 1rem;
+  }
+
+  .address-text {
+    line-height: 1.5;
+  }
+
+  /* 7) Title spacing */
+  .contact-section .info-block .page-title {
+    margin-bottom: 2rem;
+  }
+
+  /* 8) Edge accent can be distracting on small screens */
+  .edge-accent {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-section {
+    min-height: auto; // avoid forced tall section on small screens
+  }
+  .contact-section .info-block .page-title {
+    font-size: 2.2rem;
+  }
+}
