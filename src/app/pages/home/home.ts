@@ -25,6 +25,7 @@ export class Home implements AfterViewInit {
 
   private observer: IntersectionObserver | null = null;
   private isBrowser: boolean;
+  private rafId: number | null = null;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
@@ -67,19 +68,32 @@ export class Home implements AfterViewInit {
     );
 
     elements.forEach((el) => this.observer?.observe(el));
+
+    this.runParallax();
   }
 
   // 3. Smooth Parallax Effect
   @HostListener('window:scroll', [])
   onScroll() {
-    if (!this.isBrowser || !this.parallaxImages) return;
+    if (!this.isBrowser) return;
+
+    // ✅ rAF throttle (prevents 100s of DOM writes during scroll)
+    if (this.rafId !== null) return;
+
+    this.rafId = requestAnimationFrame(() => {
+      this.runParallax();
+      this.rafId = null;
+    });
+  }
+
+  private runParallax() {
+    if (!this.parallaxImages) return;
     const scrollY = window.scrollY;
 
     this.parallaxImages.forEach((el) => {
       const node = el.nativeElement;
       const speed = parseFloat(node.getAttribute('data-speed') || '0.05');
-      // Simple translate for performance
-      node.style.transform = `translateY(${scrollY * speed}px)`;
+      node.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
     });
   }
 }

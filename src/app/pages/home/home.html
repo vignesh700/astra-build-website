@@ -1,6 +1,29 @@
 <div class="home-container">
+  <section class="hero" aria-label="Landing">
+    <div class="hero-bg parallax" #parallaxImg data-speed="0.12">
+      <img src="landing.jpeg" alt="Astra Build futuristic bridge concept">
+    </div>
 
-  <section class="vision-section" aria-label="Our Vision">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content scroll-fade" #scrollFade>
+      <h1 class="hero-title">Astra Build<br>International</h1>
+      <p class="hero-subtitle">
+        Building innovative integration across residential, commercial, and industrial projects.
+      </p>
+
+      <div class="hero-actions">
+        <a routerLink="/projects" class="btn primary">View Projects</a>
+        <a routerLink="/contact" class="btn ghost">Contact Us</a>
+      </div>
+    </div>
+
+    <a class="scroll-indicator" href="#vision" aria-label="Scroll to Vision">
+      <span></span>
+    </a>
+  </section>
+
+  <section id="vision" class="vision-section" aria-label="Our Vision">
     <div class="content-wrapper">
 
       <div class="vision-text scroll-fade" #scrollFade>

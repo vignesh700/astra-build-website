@@ -1,37 +1,3 @@
-<!-- <nav class="navbar">
-  <div class="nav-container">
-
-    <a routerLink="/" class="logo">
-      <div class="logo-mark">
-        <img src="logo.jpeg" alt="Astra Build Icon">
-      </div>
-      <div class="brand-text">
-        <img src="brand_name.jpeg" class="brand-img" alt="Astra Build International">
-      </div>
-    </a>
-
-    <div class="nav-links desktop-only">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-      <a routerLink="/service" routerLinkActive="active">Services</a>
-      <a routerLink="/projects" routerLinkActive="active">Projects</a>
-      <a routerLink="/about" routerLinkActive="active">About Us</a>
-      <a routerLink="/contact" routerLinkActive="active">Contact</a>
-    </div>
-
-    <button class="hamburger-btn" (click)="toggleMenu()" aria-label="Toggle Navigation">
-      <i class="pi" [ngClass]="isMenuOpen ? 'pi-times' : 'pi-bars'"></i>
-    </button>
-
-  </div>
-
-  <div class="mobile-menu" [class.open]="isMenuOpen">
-    <a routerLink="/" (click)="closeMenu()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-    <a routerLink="/service" (click)="closeMenu()" routerLinkActive="active">Services</a>
-    <a routerLink="/about" (click)="closeMenu()" routerLinkActive="active">About Us</a>
-    <a routerLink="/contact" (click)="closeMenu()" routerLinkActive="active">Contact</a>
-  </div>
-</nav> -->
-
 <nav class="navbar">
   <div class="nav-container">
     <a routerLink="/" class="logo">
@@ -52,9 +18,7 @@
     </div>
 
     <!-- Mobile Hamburger -->
-    <button class="hamburger-btn" type="button"
-      (click)="toggleMenu()"
-      [attr.aria-expanded]="isMenuOpen"
+    <button class="hamburger-btn" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen"
       aria-label="Toggle Navigation">
       <i class="pi" [ngClass]="isMenuOpen ? 'pi-times' : 'pi-bars'"></i>
     </button>

@@ -1,27 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
-    <loc>https://www.astrabuildint.com/</loc>
+    <loc>https://astrabuildint.com/</loc>
     <priority>1.0</priority>
   </url>
-
   <url>
-    <loc>https://www.astrabuildint.com/about-us</loc>
+    <loc>https://astrabuildint.com/about-us</loc>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://www.astrabuildint.com/services</loc>
+    <loc>https://astrabuildint.com/services</loc>
     <priority>0.8</priority>
   </url>
-    <url>
-    <loc>https://astrabuild.com/projects</loc>
-  </url>
-
   <url>
-    <loc>https://www.astrabuildint.com/contact</loc>
+    <loc>https://astrabuildint.com/projects</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrabuildint.com/contact</loc>
     <priority>0.7</priority>
   </url>
-
 </urlset>
