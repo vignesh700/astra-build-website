@@ -79,10 +79,28 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV61XV597E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-XV61XV597E');
+</script>
+
+<!-- Track CTA clicks -->
+<script>
+  function trackClick(id, eventName) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('click', function () {
+      if (window.gtag) {
+        gtag('event', eventName, { event_category: 'lead' });
+      }
+    });
+  }
+
+  window.addEventListener('load', function () {
+    trackClick('cta-whatsapp', 'whatsapp_click');
+    trackClick('cta-call', 'call_click');
+  });
 </script>
 
 <body>
