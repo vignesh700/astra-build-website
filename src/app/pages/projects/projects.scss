@@ -28,9 +28,10 @@
 /* Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* more density on large screens */
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 24px;
   margin-bottom: 70px;
+  align-items: start;
 }
 
 @media (max-width: 1200px) {
@@ -112,4 +113,53 @@
 .loc {
   font-size: 13px;
   color: rgba(234, 252, 255, 0.7);
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+.card {
+  height: 100%;
+}
+.img-wrap img {
+  height: 260px;
+}
+/* ===== Scroll reveal (SSR-safe) ===== */
+/* default SSR: visible */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* only hide + animate when JS is active */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+  will-change: opacity, transform;
+
+  /* stagger variable (you are setting --delay in template) */
+  transition-delay: var(--delay, 0ms);
+}
+
+html.js .reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }

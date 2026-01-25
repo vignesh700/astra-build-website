@@ -1,22 +1,44 @@
-<section class="hero">
-    <h1>Our Projects</h1>
+<!-- <section class="hero">
+  <h1>Our Projects</h1>
 </section>
 
 <section class="grid">
-    @for (p of projects; track p.title) {
+  @for (p of projects; track p.title) {
     <div class="card">
-        <div class="img-wrap">
-            <img [src]="p.image" [alt]="p.title" loading="lazy" />
-        </div>
+      <div class="img-wrap">
+        <img [src]="p.image" [alt]="p.title" loading="lazy" />
+      </div>
 
-        <div class="body">
-            <span class="cat">{{ p.category }}</span>
-            <h3>{{ p.title }}</h3>
-            <p class="loc">{{ p.location }}</p>
-        </div>
+      <div class="body">
+        <span class="cat">{{ p.category }}</span>
+        <h3>{{ p.title }}</h3>
+        <p class="loc">{{ p.location }}</p>
+      </div>
     </div>
-    }
-    <section class="grid">
-        <!-- cards -->
-    </section>
+  }
+</section> -->
+
+<section class="hero reveal" #revealEl>
+  <h1>Our Projects</h1>
 </section>
+
+<section class="grid">
+  @for (p of projects; track p.title; let i = $index) {
+    <div
+      class="card reveal"
+      #revealEl
+      [style.--delay.ms]="i * 80"
+    >
+      <div class="img-wrap">
+        <img [src]="p.image" [alt]="p.title" loading="lazy" />
+      </div>
+
+      <div class="body">
+        <span class="cat">{{ p.category }}</span>
+        <h3>{{ p.title }}</h3>
+        <p class="loc">{{ p.location }}</p>
+      </div>
+    </div>
+  }
+</section>
+
