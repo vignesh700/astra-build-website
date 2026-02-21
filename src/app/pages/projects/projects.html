@@ -1,44 +1,76 @@
-<!-- <section class="hero">
-  <h1>Our Projects</h1>
-</section>
+<div class="projects-wrapper">
+  <section class="projects-section">
+    <div class="container">
+      <header class="hero reveal" #revealEl>
+        <h1 class="section-title">Our Projects</h1>
+        <p class="hero-copy">
+          A snapshot of residential and industrial work delivered with Astra Build's project-led construction approach.
+        </p>
+      </header>
 
-<section class="grid">
-  @for (p of projects; track p.title) {
-    <div class="card">
-      <div class="img-wrap">
-        <img [src]="p.image" [alt]="p.title" loading="lazy" />
-      </div>
+      <section class="grid" aria-label="Completed projects">
+        @for (p of projects; track p.title; let i = $index) {
+          <article class="card reveal" #revealEl [style.--delay.ms]="i * 90">
+            <div class="img-wrap">
+              <img [src]="p.image" [alt]="p.title" loading="lazy" />
+            </div>
 
-      <div class="body">
-        <span class="cat">{{ p.category }}</span>
-        <h3>{{ p.title }}</h3>
-        <p class="loc">{{ p.location }}</p>
-      </div>
+            <div class="body">
+              <span class="cat">{{ p.category }}</span>
+              <h2>{{ p.title }}</h2>
+              <p class="loc">{{ p.location }}</p>
+            </div>
+          </article>
+        }
+      </section>
+
+      <section class="ic-section reveal" #revealEl aria-label="Interiors">
+        <h2 class="section-title">Interiors</h2>
+        <div class="ic-slots ic-slots--interiors">
+          <div class="ic-slot ic-slot--media">
+            <img src="interior-1.jpeg" alt="Interior 1" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="interior-2.jpeg" alt="Interior 2" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="interior-3.jpeg" alt="Interior 3" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="interior-4.jpeg" alt="Interior 4" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="interior-5.jpeg" alt="Interior 5" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="interior-6.jpeg" alt="Interior 6" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="interior-7.jpeg" alt="Interior 7" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="interior-8.jpeg" alt="Interior 8" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <section class="ic-section reveal" #revealEl aria-label="Concepts">
+        <h2 class="section-title">Concepts</h2>
+        <div class="ic-slots ic-slots--concepts">
+          <div class="ic-slot ic-slot--media">
+            <img src="concept-1.jpeg" alt="Concept 1" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="concept-2.jpeg" alt="Concept 2" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="concept-3.jpeg" alt="Concept 3" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="concept-4.jpeg" alt="Concept 4" loading="lazy" />
+          </div>
+        </div>
+      </section>
     </div>
-  }
-</section> -->
-
-<section class="hero reveal" #revealEl>
-  <h1>Our Projects</h1>
-</section>
-
-<section class="grid">
-  @for (p of projects; track p.title; let i = $index) {
-    <div
-      class="card reveal"
-      #revealEl
-      [style.--delay.ms]="i * 80"
-    >
-      <div class="img-wrap">
-        <img [src]="p.image" [alt]="p.title" loading="lazy" />
-      </div>
-
-      <div class="body">
-        <span class="cat">{{ p.category }}</span>
-        <h3>{{ p.title }}</h3>
-        <p class="loc">{{ p.location }}</p>
-      </div>
-    </div>
-  }
-</section>
-
+  </section>
+</div>

@@ -1,136 +1,223 @@
 .projects-wrapper {
   width: 100%;
-  padding: 80px 0 90px;
 }
 
-/* Inner container to avoid stretching too much */
+.projects-section {
+  padding: var(--section-padding);
+  background-color: var(--bg-white);
+}
+
 .container {
-  max-width: 1400px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 28px;
 }
 
-/* Hero */
 .hero {
-  margin-bottom: 40px;
-}
-.hero h1 {
-  font-size: 56px;
-  margin: 0;
-  letter-spacing: -0.6px;
-}
-.hero p {
-  opacity: 0.8;
-  margin-top: 10px;
-  max-width: 600px;
+  margin-bottom: 3rem;
+  max-width: 760px;
 }
 
-/* Grid */
+.hero .section-title {
+  margin-bottom: 1rem;
+}
+
+.hero-copy {
+  margin: 0;
+  text-align: left;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 24px;
-  margin-bottom: 70px;
-  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
 }
 
-@media (max-width: 1200px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 600px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Card */
 .card {
-  border-radius: 20px;
+  height: 100%;
+  border-radius: 14px;
   overflow: hidden;
-  background: linear-gradient(180deg, #0b1117, #0a0f14);
-  border: 1px solid rgba(0, 255, 255, 0.12);
-  transition: all 0.35s ease;
-  position: relative;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(0, 255, 255, 0.12), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
+  background: var(--bg-light);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(0, 255, 255, 0.35);
-  box-shadow: 0 12px 30px rgba(0, 255, 255, 0.12);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+  border-color: rgba(41, 182, 246, 0.45);
 }
 
-.card:hover::before {
-  opacity: 1;
+.img-wrap {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
 }
 
-/* Image */
 .img-wrap img {
   width: 100%;
-  height: 230px;
+  height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.6s ease;
 }
 
-/* Body */
+.card:hover .img-wrap img {
+  transform: scale(1.04);
+}
+
 .body {
-  padding: 16px 18px 18px;
+  position: relative;
+  padding: 1.25rem 1.25rem 1.5rem;
+  transition: background-color 0.28s ease;
 }
 
-/* Category */
+.body::after {
+  content: '';
+  position: absolute;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 0.85rem;
+  height: 2px;
+  background: var(--accent-cyan);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0.45;
+  transition: transform 0.28s ease;
+}
+
+.card:hover .body {
+  background-color: rgba(41, 182, 246, 0.04);
+}
+
+.card:hover .body::after {
+  transform: scaleX(0.34);
+}
+
 .cat {
   display: inline-block;
-  font-size: 11px;
-  letter-spacing: 0.4px;
+  margin-bottom: 0.45rem;
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: #00ffff;
 }
 
-/* Title */
-.body h3 {
-  margin: 8px 0 6px;
-  font-size: 19px;
-  font-weight: 600;
-  color: #eafcff;
+.body h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
-/* Location */
 .loc {
-  font-size: 13px;
-  color: rgba(234, 252, 255, 0.7);
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-grey);
+  text-align: left;
 }
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+
+.ic-section {
+  padding-top: 0.5rem;
+  margin-bottom: 3rem;
 }
-@media (max-width: 600px) {
+
+.ic-section .section-title {
+  margin-bottom: 1.4rem;
+}
+
+.ic-slots {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+.ic-slots--concepts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ic-slots--interiors {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ic-slot {
+  min-height: 120px;
+  border: 1px dashed rgba(15, 23, 42, 0.25);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--text-grey);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+.ic-slot--media {
+  min-height: 170px;
+  padding: 0;
+  border-style: solid;
+  border-color: rgba(15, 23, 42, 0.1);
+  background: #fff;
+  overflow: hidden;
+  transition:
+    transform 0.26s ease,
+    box-shadow 0.26s ease,
+    border-color 0.26s ease;
+}
+
+.ic-slot--media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.ic-slots--interiors .ic-slot--media:hover,
+.ic-slots--concepts .ic-slot--media:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+  border-color: rgba(41, 182, 246, 0.35);
+}
+
+.ic-slots--interiors .ic-slot--media:hover img,
+.ic-slots--concepts .ic-slot--media:hover img {
+  transform: scale(1.04);
+}
+
+@media (max-width: 992px) {
   .grid {
     grid-template-columns: 1fr;
   }
+
+  .ic-slots--interiors {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
-.card {
-  height: 100%;
+
+@media (max-width: 576px) {
+  .ic-slots--interiors {
+    grid-template-columns: 1fr;
+  }
+
+  .ic-slots--concepts {
+    grid-template-columns: 1fr;
+  }
 }
-.img-wrap img {
-  height: 260px;
+
+@media (max-width: 768px) {
+  .hero {
+    margin-bottom: 2.2rem;
+  }
+
+  .body h2 {
+    font-size: 1.15rem;
+  }
 }
-/* ===== Scroll reveal (SSR-safe) ===== */
+
 /* default SSR: visible */
 .reveal {
   opacity: 1;
@@ -145,8 +232,6 @@ html.js .reveal {
     opacity 700ms ease,
     transform 700ms ease;
   will-change: opacity, transform;
-
-  /* stagger variable (you are setting --delay in template) */
   transition-delay: var(--delay, 0ms);
 }
 
@@ -155,7 +240,6 @@ html.js .reveal.is-in {
   transform: translateY(0);
 }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html.js .reveal {
     transition: none !important;

@@ -13,6 +13,13 @@ import { isPlatformBrowser } from '@angular/common';
 import { PROJECTS } from '../../core/services/data';
 import { Seo } from '../../core/services/seo';
 
+type ProjectItem = {
+  title: string;
+  category: string;
+  location: string;
+  image: string;
+};
+
 @Component({
   selector: 'app-projects',
   standalone: true,
@@ -21,7 +28,7 @@ import { Seo } from '../../core/services/seo';
   styleUrl: './projects.scss',
 })
 export class Projects implements AfterViewInit, OnDestroy {
-  projects: any[] = PROJECTS;
+  readonly projects: ProjectItem[] = PROJECTS;
 
   @ViewChildren('revealEl', { read: ElementRef })
   revealEls!: QueryList<ElementRef<HTMLElement>>;
@@ -42,10 +49,8 @@ export class Projects implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    // SSR guard
     if (!this.isBrowser) return;
 
-    // Fallback for browsers without IntersectionObserver
     if (!('IntersectionObserver' in window)) {
       this.revealEls.forEach((el) => el.nativeElement.classList.add('is-in'));
       return;
@@ -56,7 +61,7 @@ export class Projects implements AfterViewInit, OnDestroy {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-in');
-            this.io?.unobserve(entry.target); // animate once
+            this.io?.unobserve(entry.target);
           }
         }
       },
@@ -66,7 +71,7 @@ export class Projects implements AfterViewInit, OnDestroy {
       },
     );
 
-    this.revealEls.forEach((el) => this.io!.observe(el.nativeElement));
+    this.revealEls.forEach((el) => this.io?.observe(el.nativeElement));
   }
 
   ngOnDestroy(): void {
