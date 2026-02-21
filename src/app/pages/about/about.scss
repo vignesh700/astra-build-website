@@ -51,12 +51,13 @@ $font-family: 'Inter', sans-serif;
 
 /* --- SHARED STYLES --- */
 section {
-  margin: 0 0 2.2rem;
-  font-size: 2.4rem;
-  color: #1e293b;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  text-align: center;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 8%;
+  box-sizing: border-box;
 
   .page-label {
     position: absolute;
@@ -310,7 +311,7 @@ section {
   box-shadow: 0 8px 20px rgba(2, 6, 23, 0.04);
 
   i {
-    color: #ff5d1f;
+    color: #2A3470;
     font-size: 2.5rem;
   }
 

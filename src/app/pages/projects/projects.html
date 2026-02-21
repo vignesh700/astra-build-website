@@ -10,26 +10,23 @@
 
       <section class="grid" aria-label="Completed projects">
         @for (p of projects; track p.title; let i = $index) {
-          <article class="card reveal" #revealEl [style.--delay.ms]="i * 90">
-            <div class="img-wrap">
-              <img [src]="p.image" [alt]="p.title" loading="lazy" />
-            </div>
+        <article class="card reveal" #revealEl [style.--delay.ms]="i * 90">
+          <div class="img-wrap">
+            <img [src]="p.image" [alt]="p.title" loading="lazy" />
+          </div>
 
-            <div class="body">
-              <span class="cat">{{ p.category }}</span>
-              <h2>{{ p.title }}</h2>
-              <p class="loc">{{ p.location }}</p>
-            </div>
-          </article>
+          <div class="body">
+            <span class="cat">{{ p.category }}</span>
+            <h2>{{ p.title }}</h2>
+            <p class="loc">{{ p.location }}</p>
+          </div>
+        </article>
         }
       </section>
 
       <section class="ic-section reveal" #revealEl aria-label="Interiors">
         <h2 class="section-title">Interiors</h2>
         <div class="ic-slots ic-slots--interiors">
-          <div class="ic-slot ic-slot--media">
-            <img src="interior-1.jpeg" alt="Interior 1" loading="lazy" />
-          </div>
           <div class="ic-slot ic-slot--media">
             <img src="interior-2.jpeg" alt="Interior 2" loading="lazy" />
           </div>
@@ -68,6 +65,9 @@
           </div>
           <div class="ic-slot ic-slot--media">
             <img src="concept-4.jpeg" alt="Concept 4" loading="lazy" />
+          </div>
+          <div class="ic-slot ic-slot--media">
+            <img src="concept-5.jpeg" alt="Concept 5" loading="lazy" />
           </div>
         </div>
       </section>
