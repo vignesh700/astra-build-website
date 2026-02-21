@@ -12,9 +12,27 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  overflow: hidden;
+  isolation: isolate;
 
   backdrop-filter: blur(12px) saturate(1.1);
   box-shadow: 0 4px 20px rgba(13, 44, 77, 0.04);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      110deg,
+      transparent 38%,
+      rgba(41, 182, 246, 0.09) 50%,
+      transparent 62%
+    );
+    transform: translateX(-130%);
+    animation: beam-sweep 16s ease-in-out infinite;
+    z-index: 0;
+  }
 
   .nav-container {
     display: flex;
@@ -23,6 +41,8 @@
     max-width: var(--max-width);
     margin: 0 auto;
     gap: 24px;
+    position: relative;
+    z-index: 1;
   }
 
   /* ---------- LOGO ---------- */
@@ -229,5 +249,28 @@
     background: #25d366;
     border-color: #25d366;
     color: #fff;
+    animation: whatsapp-soft-pulse 2.8s ease-in-out infinite;
+  }
+}
+
+@keyframes beam-sweep {
+  0% {
+    transform: translateX(-130%);
+  }
+  60% {
+    transform: translateX(130%);
+  }
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+@keyframes whatsapp-soft-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
   }
 }

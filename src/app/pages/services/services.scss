@@ -55,6 +55,7 @@
 
   .service-card {
     text-align: center;
+    transform: translateZ(0);
 
     .img-wrapper {
       width: 100%;
@@ -62,6 +63,7 @@
       border-radius: 4px;
       margin-bottom: 1.5rem;
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+      contain: paint;
 
       img {
         width: 100%;
@@ -186,7 +188,7 @@
 }
 
 .float-soft {
-  animation: float 6s ease-in-out infinite;
+  animation: float 14s ease-in-out infinite;
 }
 @keyframes float {
   0%,
@@ -194,6 +196,6 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-15px);
+    transform: translateY(-10px);
   }
 }

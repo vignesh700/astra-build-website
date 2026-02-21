@@ -165,7 +165,7 @@
 
 /* Floating Animation */
 .float-soft {
-  animation: float 6s ease-in-out infinite;
+  animation: float 14s ease-in-out infinite;
 }
 @keyframes float {
   0%,
@@ -173,7 +173,7 @@
     transform: translateY(-50%);
   }
   50% {
-    transform: translateY(calc(-50% - 10px));
+    transform: translateY(calc(-50% - 6px));
   }
 }
 /* Mobile/Tablet Contact Cleanup */
