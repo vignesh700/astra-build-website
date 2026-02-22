@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  OnDestroy,
   Component,
   ElementRef,
   Inject,
@@ -17,9 +18,10 @@ import { Seo } from '../../core/services/seo';
   templateUrl: './about.html',
   styleUrls: ['./about.scss'],
 })
-export class About implements AfterViewInit {
+export class About implements AfterViewInit, OnDestroy {
   @ViewChildren('reveal', { read: ElementRef })
   revealEls!: QueryList<ElementRef<HTMLElement>>;
+  private io?: IntersectionObserver;
 
   constructor(
     private seo: Seo,
@@ -49,18 +51,22 @@ export class About implements AfterViewInit {
       return;
     }
 
-    const io = new IntersectionObserver(
+    this.io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             (entry.target as HTMLElement).classList.add('is-in');
-            io.unobserve(entry.target); // animate once
+            this.io?.unobserve(entry.target); // animate once
           }
         });
       },
       { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
     );
 
-    this.revealEls.forEach((el) => io.observe(el.nativeElement));
+    this.revealEls.forEach((el) => this.io?.observe(el.nativeElement));
+  }
+
+  ngOnDestroy(): void {
+    this.io?.disconnect();
   }
 }

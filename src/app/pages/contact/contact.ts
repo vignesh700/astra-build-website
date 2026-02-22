@@ -1,5 +1,6 @@
 import {
   Component,
+  OnDestroy,
   ElementRef,
   QueryList,
   ViewChildren,
@@ -17,8 +18,9 @@ import { Seo } from '../../core/services/seo';
   templateUrl: './contact.html',
   styleUrls: ['./contact.scss'],
 })
-export class Contact implements AfterViewInit {
+export class Contact implements AfterViewInit, OnDestroy {
   @ViewChildren('scrollFade', { read: ElementRef }) fadeElements!: QueryList<ElementRef>;
+  private observer?: IntersectionObserver;
 
   constructor(
     private seo: Seo,
@@ -36,18 +38,22 @@ export class Contact implements AfterViewInit {
     const elements = this.fadeElements.map((e) => e.nativeElement);
     elements.forEach((el) => el.classList.add('fade-init'));
 
-    const observer = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            observer.unobserve(entry.target);
+            this.observer?.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.2 },
     );
 
-    elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => this.observer?.observe(el));
+  }
+
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
   }
 }

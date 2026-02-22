@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  OnDestroy,
   Component,
   ElementRef,
   Inject,
@@ -19,11 +20,12 @@ import { Meta, Title } from '@angular/platform-browser'; // SEO Tools
   templateUrl: './services.html',
   styleUrls: ['./services.scss'],
 })
-export class Services implements AfterViewInit {
+export class Services implements AfterViewInit, OnDestroy {
   // Reuse the same logic for scroll animations
   @ViewChildren('scrollFade') fadeElements!: QueryList<ElementRef<HTMLElement>>;
 
   private isBrowser: boolean;
+  private observer?: IntersectionObserver;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
@@ -48,7 +50,7 @@ export class Services implements AfterViewInit {
     const elements = this.fadeElements.map((e) => e.nativeElement);
     elements.forEach((el) => el.classList.add('fade-init'));
 
-    const observer = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -58,13 +60,17 @@ export class Services implements AfterViewInit {
             const masks = entry.target.querySelectorAll('.reveal-mask');
             masks.forEach((m) => m.classList.add('active'));
 
-            observer.unobserve(entry.target);
+            this.observer?.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.05, rootMargin: '0px 0px -10% 0px' },
     );
 
-    elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => this.observer?.observe(el));
+  }
+
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
   }
 }
