@@ -29,7 +29,7 @@ export class About implements AfterViewInit, OnDestroy {
   ) {
     this.seo.setSeo(
       'About Us | Astra Build International',
-      'Astra Build International is committed to global construction excellence through system integration, sustainable methodologies, and professional project execution.'
+      'Astra Build International Pvt Ltd is a Bangalore-based design, build and integration company delivering premium residential interiors and structured construction solutions.'
     );
   }
 
