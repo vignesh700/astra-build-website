@@ -2,13 +2,13 @@ export const PROJECTS: any[] = [
   {
     title: 'HSR Residential Villa',
     category: 'Residential',
-    location: 'Bengaluru',
+    location: 'Bengaluru Outer',
     image: 'Mysuru_Project.jpeg',
   },
   {
-    title: 'Warehouse Shed',
-    category: 'Industrial',
-    location: 'Hosur',
+    title: 'Residential Villa',
+    category: 'Residential',
+    location: 'Hosur Road',
     image: 'Nagamangalam_project.jpeg',
   },
 ];
